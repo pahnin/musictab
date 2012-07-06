@@ -1,29 +1,6 @@
-# TabPlayer
+MusicTab player is a music player with htlm5 frontend,
+you can play and make playlists of you music collection in you browser tab.
 
-TODO: Write a gem description
+It is powered by sinatra server in the backed and html5 audio player
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'TabPlayer'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install TabPlayer
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Start musictab by runnnig bin/musictab
