@@ -1,0 +1,27 @@
+
+%script{:type => "text/javascript", :charset => "utf-8", :src => "javascript/jquery-ui-1.8.21.custom.min.js"}
+%p
+	Hi, Welcome to TabPlayer. Add some music to your library!
+
+.addmusic
+	.library
+	
+	.browser
+		:javascript
+			a=#{@list};
+			$(document).ready(
+				function(){
+					$.each(a,function(l,i){$('.browser').append("<div class='folder' id="+i+"></div>");});
+					$('.folder').draggable({helper: 'clone', containment: ".addmusic"}).selectable();
+					
+					$( ".library" ).droppable({
+						accept: ".folder",
+						drop: function(event,ui){
+							console.log("Item was Dropped");
+							$(this).append($(ui.helper).clone());
+						}
+					});
+				}
+			);
+			
+%script{:type => "text/javascript", :charset => "utf-8", :src => "javascript/setup.js"}

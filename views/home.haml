@@ -1,0 +1,27 @@
+.player
+	%span#playtoggle
+	%span#gutter
+		%span#loading
+		%span#handle.ui-slider-handle
+	%span#timeleft
+	
+	
+.list
+	%table
+		%thead
+			%tr
+				%td{width:"10px"}
+					Sl.no
+				%td{width:"30%"}
+					Title
+				%td{width:"30%"}
+					Album
+				%td{width:"30%"}
+					Artist
+		%tbody
+			- Files.each do |object|
+				%tr
+					%td= object.id
+					%td= object.title
+					%td= object.album
+					%td= object.artist
