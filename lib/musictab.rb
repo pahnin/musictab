@@ -14,14 +14,14 @@ module MusicTab
 		set :root, File.dirname(File.dirname(__FILE__))
 		set :views, File.dirname(__FILE__) + "/../views"
 		set :public_folder, File.dirname(__FILE__) + "/../public"
-		set :server, :thin
+		#set :server, :thin
 		
 		configure :development do  
 			DataMapper.auto_upgrade!  
 		end 
 
 		get '/' do
-			if Sources.all.size>0 then
+			if Sources.all.size > 0 then
 				haml :home, {:layout => :"home-layout"}
 			elsif request.ip == "127.0.0.1" then
 				redirect '/setup/sources'
@@ -31,11 +31,11 @@ module MusicTab
 		end 
 		
 		get '/setup/sources' do
-			if Sources.all.size < 1 then
+			if Sources.all.size > 0 then
+				redirect '/setup/files'
+			else
 				@list=FOps.ls(Dir.home).to_json
 				haml :setup, {:layout => :"nosetup-layout"}
-			else
-				redirect '/setup/files'
 			end
 		end
 		
@@ -48,7 +48,17 @@ module MusicTab
 		end
 		
 		get '/dev' do
-			
+			send_file(Dir.home+'/Nuvvena.ogg')			
 		end
+		
+		get '/music/:id' do
+			send_file(Files.fetch(params[:id].to_i).file_path)
+		end
+		
+		get '/setup/cdls/*' do
+			puts '/'+params[:captures].join
+			FOps.ls('/'+params[:captures].join).to_json
+		end
+		
 	end
 end

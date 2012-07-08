@@ -25,14 +25,3 @@ class Files
 	
 end
 	
-# class Db
-	# @@db = SQLite3::Database.open "db/tabplayer.database"
-	# @@library_count = @@db.execute "select count(Folder) from Library"
-	# def self.empty?
-		# if @@library_count != 0
-			# return true
-		# else
-			# return false
-		# end
-	# end
-# end
