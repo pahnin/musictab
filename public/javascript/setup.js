@@ -1,3 +1,4 @@
+var arrsources=new Array();
 $(document).ready(function(){
 	function browser_update(response){
 		eval("ls="+response);
@@ -19,14 +20,38 @@ $(document).ready(function(){
 					});
 					$('.browser').children().first().addClass('highlight');
 	}
+	function addfolder(){
+		$.ajax({
+				type: 'GET',
+				url: '/cwd',
+				success: function(response){
+					$('.library').append("<div class='source'>"+response+'/'+$('.highlight p').text()+"</div>");
+					arrsources.push([arrsources.length+1,response+'/'+$('.highlight p').text(),$('.highlight p').text()]);
+				}
+			});
+	}
 	$('.container').animate({
 		height : '450px'
 	},1300,'easeOutBounce');
+	$('.save').click(function() {
+		$.ajax({
+			type: 'POST',
+			url: "/save/sources",
+			data: JSON.stringify(arrsources)
+			}).done(function(msg){
+				console.log(msg);
+				if (msg==1){
+					window.location.reload();
+				}
+			});
+		return false;
+	});
 	$(document).keydown(function (e) {
 		//alert(e.keyCode);
 		if (e.ctrlKey && e.keyCode == 13) {
 			if(!$('.highlight').hasClass('added')){
-				$('.library').append("<div class='source'>"+cwd+$('.highlight p').text()+"</div>");
+				addfolder();
+				
 			}
 			e.preventDefault();
 		}
@@ -35,10 +60,8 @@ $(document).ready(function(){
 			if($('.highlight').hasClass('folder')){
 			$.ajax({
 				type: 'GET',
-				url: '/setup/cdls/'+cwd+$('.highlight p').text(),
+				url: '/cdls/'+$('.highlight p').text(),
 				success: function(response){
-					cwd=cwd+$('.highlight p').text()+'/';
-					console.log(cwd);
 					browser_update(response);
 				}
 			});
@@ -84,11 +107,8 @@ $(document).ready(function(){
 		//back space
 			$.ajax({
 				type: 'GET',
-				url: '/setup/cdls/'+cwd+'../',
+				url: '/cdls/BACKSPACE',
 				success: function(response){
-					console.log(cwd+'../');
-					cwd=cwd.substr(0,cwd.lastIndexOf('/',cwd.length-2));
-					console.log(cwd);
 					browser_update(response);
 				}
 			});

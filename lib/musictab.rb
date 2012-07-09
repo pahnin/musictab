@@ -34,6 +34,7 @@ module MusicTab
 			if Sources.all.size > 0 then
 				redirect '/setup/files'
 			else
+				Dir.chdir
 				@list=FOps.ls(Dir.home).to_json
 				haml :setup, {:layout => :"nosetup-layout"}
 			end
@@ -46,18 +47,36 @@ module MusicTab
 		get '/nothing-here' do
 			haml :nosetup, {:layout => :"nosetup-layout"}
 		end
-		
-		get '/dev' do
-			send_file(Dir.home+'/Nuvvena.ogg')			
-		end
-		
+				
 		get '/music/:id' do
 			send_file(Files.fetch(params[:id].to_i).file_path)
 		end
 		
-		get '/setup/cdls/*' do
-			puts '/'+params[:captures].join
-			FOps.ls('/'+params[:captures].join).to_json
+		get '/cdls/*' do
+			if params[:captures].join == "BACKSPACE" then
+				Dir.chdir("..")
+			else
+				Dir.chdir(params[:captures].join)
+			end
+			puts Dir.pwd
+			FOps.ls(Dir.pwd).to_json
+		end
+		
+		get '/cwd' do
+			Dir.pwd
+		end
+		
+		post '/save/sources' do
+			Sources.destroy
+			sources=JSON.load(request.body.read)
+			sources.each{|j|
+				@source=Sources.create(
+					:id => j[0],
+					:path => j[1],
+					:name => j[2]
+				)
+			}
+			"1"
 		end
 		
 	end
