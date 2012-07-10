@@ -22,6 +22,6 @@ class Files
 	property :title		, String
 	property :album		, String
 	property :artist	, String
-	
+	property :include  	, Boolean, :default  => true
 end
 	

@@ -5,7 +5,7 @@ $(document).ready(function(){
 			audio.pause();
 			$('.playing').removeClass('playing');
 			$(this).parent().addClass('playing');
-			$('.player audio source').attr('src','/music/'+(parseInt($(this).parent().attr("id"))-1));
+			$('.player audio').attr('src','/music/'+(parseInt($(this).parent().attr("id"))-1));
 			audio.play();
 		});
 	}

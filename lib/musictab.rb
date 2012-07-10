@@ -21,7 +21,7 @@ module MusicTab
 		end 
 
 		get '/' do
-			if Sources.all.size > 0 then
+			if 1 then#Sources.all.size > 0 then
 				haml :home, {:layout => :"home-layout"}
 			elsif request.ip == "127.0.0.1" then
 				redirect '/setup/sources'
