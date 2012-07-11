@@ -18,10 +18,11 @@ class Files
 	include DataMapper::Resource  
 	
 	property :id		, Serial
-	property :file_path	, String
-	property :title		, String
-	property :album		, String
-	property :artist	, String
-	property :include  	, Boolean, :default  => true
+	property :file_path	, String, :length => 500
+	property :title		, String, :length => 100
+	property :album		, String, :length => 100
+	property :artist	, String, :length => 100
+	property :include  	, Boolean, :default  => 1
 end
 	
+DataMapper.finalize

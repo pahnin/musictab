@@ -8,7 +8,7 @@ Start musictab by runnnig bin/musictab
 Then run localhost:4567 in your browser
 
 TODO:
-Generate List
+Stream output while generating filelist
 Add UI for Player
 Search Bar
 Playlist

@@ -21,7 +21,8 @@ module MusicTab
 		end 
 
 		get '/' do
-			if 1 then#Sources.all.size > 0 then
+			if Sources.all.size > 0 then
+				if Files.all.size == 0 then redirect '/setup/files' end
 				haml :home, {:layout => :"home-layout"}
 			elsif request.ip == "127.0.0.1" then
 				redirect '/setup/sources'
@@ -41,7 +42,19 @@ module MusicTab
 		end
 		
 		get '/setup/files' do
-			
+			Files.destroy
+			Sources.each{|s|
+				MusicTab::FOps.gen_list('/fun/Music') do |arr_f|
+					@files=Files.create(
+						:file_path => arr_f[0],
+						:title => arr_f[1],
+						:album => arr_f[2],
+						:artist => arr_f[3] 
+					)
+					p @files.errors if @files.errors.length > 0 
+				end
+			}
+			redirect '/'
 		end
 		
 		get '/nothing-here' do

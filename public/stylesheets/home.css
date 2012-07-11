@@ -28,6 +28,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .list{
 	width: 942px;
 	margin: 10px auto 0;
+	height: 300px;
+	overflow: auto;
 }
 .list table tbody tr:nth-child(even) { background: #f1f5fa; }
 .list table tbody tr:nth-child(odd) { background: #fff; }
