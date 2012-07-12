@@ -1,27 +1,32 @@
 .player
-	%span#playtoggle
-	%span#gutter
-		%span#loading
-		%span#handle.ui-slider-handle
-	%span#timeleft
+	#playtoggle
+	#track-info
+		#infobox
+			#title
+			#timeleft
+		#gutter
+			#loading
+			#handle.ui-slider-handle
 	
 	
 .list
 	%table
 		%thead
 			%tr
-				%td{width:"30px"}
+				%th{width:"30px"}
 					Sl.no
-				%td{width:"20%"}
+				%th{width:"20%"}
 					Title
-				%td{width:"20%"}
+				%th{width:"20%"}
 					Album
-				%td{width:"20%"}
+				%th{width:"20%"}
 					Artist
 		%tbody
 			- Files.each do |object|
-				%tr{:id => object.id+1}
+				%tr{:id => object.id}
 					%td= object.id
-					%td= object.title
-					%td= object.album
-					%td= object.artist
+					%td#title= object.title
+					%td#album= object.album
+					%td#artist= object.artist
+
+%script{:type => "text/javascript", :charset => "utf-8", :src => "javascript/player.js"}

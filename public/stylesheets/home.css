@@ -17,18 +17,59 @@ background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Ope
 background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
 background: linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
-	width: 900px;
+	width: 920px;
 	margin: 10px auto 0;
 	border: 1px solid #afafaf;
 	border-radius: 3px;
-	padding: 25px 20px;
 	overflow: hidden;
-	height: 30px;
+	height: 60px;
+	padding: 10px;
+}
+.player #playtoggle{
+	width: 60px;
+	height: 60px;
+    background-color: #bf4931;
+    border-radius: 5px;
+    float: left;
+}
+.player #playtoggle:active{
+	background-color: #da4a38;
+}
+.player #track-info{
+	width: 850px;
+	margin-left: 10px;
+    float: left;
+    height: 60px;
+}
+.player #gutter{
+	width: 100%;
+	border-radius: 5px;
+	background-color: #d4d4d4;
+	height: 10px;	
+	cursor: pointer;
+}
+.player #gutter:hover{
+	cursor:pointer;
+}
+.player #loading{
+	height: 10px;
+	background-color: gray;
+	width: 0;
+	border-radius: 5px;
+}
+.player #infobox{
+	font-size: 12px;
+	width: 400px;
+	height: 50px;
+}
+.player #title, .player #timeleft{
+	float:left;
+	margin: 0 5px;
 }
 .list{
 	width: 942px;
 	margin: 10px auto 0;
-	height: 300px;
+	height: 430px;
 	overflow: auto;
 }
 .list table tbody tr:nth-child(even) { background: #f1f5fa; }
@@ -37,7 +78,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .list table caption { color: #777; margin: 0 0 5px 0; padding: 0; text-align: center; text-transform: uppercase; }
 .list table thead th { border: 0; border-bottom: 1px solid #ddd; color: #000; font-size: 90%; padding: 3px; margin: 0 0 5px 0; text-align: left; }
 .list table tbody tr { background-color: #fff;height:1em; }
-.list table tbody tr:hover { background-color: #3D80DF !important; color: #fff; }
+.list table tbody tr:hover { background-color: #3D80DF; color: #fff; text-shadow: #2E9AFE; cursor:pointer}
+.list table tbody tr:active { background-color: #2E9AFE !important; }
 .list table tbody td { color: #000; padding: 2px; border: 0; overflow:hidden;white-space:nowrap;}
 .list table tbody tr:hover td { color: #fff; }
 .playing{
@@ -45,3 +87,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	font-style: italic;
 	font-weight: bold;
 }
+.playing:hover{background: #3D80DF !important}

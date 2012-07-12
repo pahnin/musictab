@@ -23,7 +23,7 @@ TODO:
 -----
 * Stream output while generating filelist
 * Add logger
-* Add UI for Player
+* Add more controls for Player UI
 * Search Bar
 * Playlist
 * Flash support
