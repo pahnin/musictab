@@ -20,7 +20,7 @@
 					Artist
 		%tbody
 			- Files.each do |object|
-				%tr{:id => object.id}
+				%tr{:id => object.id+1}
 					%td= object.id
 					%td= object.title
 					%td= object.album

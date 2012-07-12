@@ -22,6 +22,7 @@ Then run localhost:4567 in your browser
 TODO:
 -----
 * Stream output while generating filelist
+* Add logger
 * Add UI for Player
 * Search Bar
 * Playlist

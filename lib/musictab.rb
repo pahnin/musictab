@@ -54,7 +54,7 @@ module MusicTab
 					p @files.errors if @files.errors.length > 0 
 				end
 			}
-			redirect '/'
+			"200"
 		end
 		
 		get '/nothing-here' do
@@ -62,7 +62,7 @@ module MusicTab
 		end
 				
 		get '/music/:id' do
-			send_file(Files.fetch(params[:id].to_i).file_path)
+			send_file(Files.get(params[:id].to_i).file_path)
 		end
 		
 		get '/cdls/*' do
