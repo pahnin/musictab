@@ -1,8 +1,10 @@
 .player
-	#playtoggle
+	#art
 	#track-info
 		#infobox
 			#title
+		#controls
+			#playtoggle
 			#timeleft
 		#gutter
 			#loading
@@ -24,9 +26,10 @@
 		%tbody
 			- Files.each do |object|
 				%tr{:id => object.id}
-					%td= object.id
+					%td#id= object.id
 					%td#title= object.title
 					%td#album= object.album
 					%td#artist= object.artist
 
 %script{:type => "text/javascript", :charset => "utf-8", :src => "javascript/player.js"}
+%script{:type => "text/javascript", :charset => "utf-8", :src => "javascript/keys.js"}

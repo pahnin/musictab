@@ -1,39 +1,37 @@
 $(document).ready(function(){
 	if(html5_player){
 		audio=$('.player audio').get(0);
-		$('.list table tbody tr td').live("click",function(){
-			audio.pause();
-			$('.playing').removeClass('playing');
-			$(this).parent().addClass('playing');
-			$('.player audio').attr('src','/music/'+(parseInt($(this).parent().attr("id"))));
-			$('.player #title').html("<p><b>Song:</b>  "+$(this).parent().children('#title').text()+" <br><b>Album:</b>  "+$(this).parent().children('#album').text()+" <br><b>Artist:</b>  "+$(this).parent().children('#artist').text()+"</p>");
-			audio.play();
-		});
-		$('#playtoggle').live("click",function(){
-			pause_track();
-		});
 		
 		$(audio).bind('timeupdate', function() {
-			var rem = parseInt(audio.duration - audio.currentTime, 10),
+//			var rem = parseInt(audio.duration - audio.currentTime, 10),
+			var rem = parseInt(audio.currentTime, 10),
 			pos = (audio.currentTime / audio.duration) * 100,
 			mins = Math.floor(rem/60,10),
 			secs = rem - mins*60;
-			$('#timeleft').text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+			$('#timeleft').text(mins + ':' + (secs > 9 ? secs : '0' + secs));
 			$('#loading').css({width: pos + '%'});
+			window.location.hash='!/'+$('.playing').children('#title').text()+'/'+$('.playing').children('#album').text()+'/'+$('.playing').children('#artist').text()+'/'+$('.playing').children('#id').text();//+'/'+parseInt(audio.currentTime);
 		});
 		
-		function pause_track(){
+		window.play_track = function (td){
+			audio.pause();
+			$('.playing').removeClass('playing');
+			td.parent().addClass('playing');
+			$('.player audio').attr('src','/music/'+(parseInt(td.parent().attr("id"))));
+			$('.player #title').html("<p><b>Song:</b>  "+td.parent().children('#title').text()+" <br><b>Album:</b>  "+td.parent().children('#album').text()+" <br><b>Artist:</b>  "+td.parent().children('#artist').text()+"</p>");
+			audio.play();			
+		}
+		
+		window.pause_toggle=function (){
 			audio.paused?audio.play():audio.pause();
 		}
 		
-		function next_track(){
-			pause_track();
-			$new_track=$('.playing').next();
-			$('.playing').removeClass('playing');
-			$new_track.addClass('playing');
-			$('.player audio').attr('src','/music/'+(parseInt($new_track.attr("id"))));
-			$('.player #title').html("<p><b>Song:</b>  "+$new_track.children('#title').text()+" <br><b>Album:</b>  "+$new_track.children('#album').text()+" <br><b>Artist:</b>  "+$new_track.children('#artist').text()+"</p>");
-			audio.play();
+		window.next_track = function (){
+			play_track($('.playing').next().children('td#id'));
+		}
+		
+		window.prev_track=function (){
+			play_track($('.playing').prev().children('td#id'));
 		}
 		
 		$('#gutter').click(function(event){
@@ -43,6 +41,22 @@ $(document).ready(function(){
 		
 		$(audio).bind("ended",function(){
 			next_track();
+		});
+		
+		
+		if(window.location.hash!=''){
+			hAsh=window.location.hash.split('/')
+			if(hAsh[4]!=""){//&&hAsh[5]!=""){
+				//audio.startTime=hAsh[5];
+				play_track($('.list #'+hAsh[4]).children('td#id'));
+									
+			}
+		}
+		$('.list table tbody tr td').live("click",function(){
+			play_track($(this));
+		});
+		$('#playtoggle').live("click",function(){
+			pause_toggle();
 		});
 
 		
