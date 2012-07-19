@@ -54,6 +54,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	background-color: gray;
 	width: 0;
 }
+.player #gutter:hover #loading{
+	background-color: #666666;
+}
 .player #infobox{
 	font-size: 12px;
 	width: 300px;

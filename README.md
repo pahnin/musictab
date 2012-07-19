@@ -19,7 +19,7 @@ Once setup is done you can see file list in home screen click on a song to play
 
 Then run localhost:4567 in your browser
 
-TODO:
+###TODO:###
 -----
 * Stream output while generating filelist
 * Add logger

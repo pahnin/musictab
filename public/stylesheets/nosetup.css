@@ -28,6 +28,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .container p{
 	width: 93%;
 	margin: 0 auto;
+	font-size: 15px;
 }
 .addmusic{
 	width : 96%;
@@ -46,9 +47,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .browser{
 	width: 55%;
 	height: 100%;
+	float: right;
 	padding: 7px;
 	position: relative;
 	overflow: auto;
+}
+.instructions{
+	width: 38%;
+	height: 40%;
+	float: left;
+	margin: 2% 1%;
+	font-size: 13px;
 }
 .folder,.file{
 	width:80px;
@@ -63,15 +72,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	overflow: visible;
 	min-height:60px;
 }
+.folder:hover .icon{
+}
 .highlight{
 	box-shadow: 0 0 0 50px #4096ff inset;
 	overflow: visible;
+	border-radius: 3px;
 }
 .highlight p{
 	color: white !important;
 	padding: 2px 7px;
 	margin: 0 -7px;
 	width:75px;
+}
+.highlight .icon{
+	box-shadow: 0 -5px 10px -5px #EFEFEF inset;
 }
 .folder .icon{
 	background: #7abcff; /* Old browsers */
@@ -84,12 +99,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
 	width:75px;
 	height:60px;
+	border-radius: 3px;
 }
 .file .icon{
 	width:75px;
 	height:60px;
+	border-radius : 3px;
 }
 .folder p,.file p{
 	font-size: 11px;
 	color: gray;
+	padding: 2px 7px;
+	margin: 0 -7px;
+}
+.save{
+	float: right;
+	margin: 10px 20px;
+	padding: 3px 5px;
+}
+.instructions p{
+	margin: 5px 3px;
 }

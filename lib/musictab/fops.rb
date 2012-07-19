@@ -37,18 +37,21 @@ module MusicTab
 			end
 			counter = 0
 			Dir[Dir.pwd+'/*'].each{|x|
+				puts Dir.pwd
 				if File.directory?(x) then
 					self.gen_list(x) do |y|
 						yield y
 					end
-				else if IO.read(x,8) == "ID3\x03\x00\x00\x00\x00" then
-					begin
-						Mp3Info.open(x) do |y|
-							yield [x,y.tag.title,y.tag.album,y.tag.artist]
+				else if File.basename(x).match('.mp3') then
+						if IO.read(x,8) == "ID3\x03\x00\x00\x00\x00" then
+						begin
+							Mp3Info.open(x) do |y|
+								yield [x,y.tag.title,y.tag.album,y.tag.artist]
+							end
+						rescue Mp3InfoError
 						end
-					rescue Mp3InfoError
-					end
-				end end
+					end end 
+				end
 			}
 			Dir.chdir(prev_pwd)
 		end

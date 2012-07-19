@@ -32,8 +32,9 @@ $(document).ready(function(){
 	}
 	$('.container').animate({
 		height : '450px'
-	},1300,'easeOutBounce');
+	},1300,'swing');
 	$('.save').click(function() {
+		if (arrsources.length > 0){
 		$.ajax({
 			type: 'POST',
 			url: "/save/sources",
@@ -44,6 +45,10 @@ $(document).ready(function(){
 					window.location.reload();
 				}
 			});
+		}
+		else{
+			alert('You must add atleast one folder to Library!');
+		}
 		return false;
 	});
 	$(document).keydown(function (e) {
@@ -62,6 +67,7 @@ $(document).ready(function(){
 				type: 'GET',
 				url: '/cdls/'+$('.highlight p').text(),
 				success: function(response){
+					//console.log(response);
 					browser_update(response);
 				}
 			});

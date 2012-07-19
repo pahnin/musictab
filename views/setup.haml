@@ -1,7 +1,6 @@
 
-%script{:type => "text/javascript", :charset => "utf-8", :src => "/javascript/jquery-ui-1.8.21.custom.min.js"}
 %p
-	Hi, Welcome to TabPlayer. Add some music to your library!
+	Add some music to your library!
 
 .addmusic
 	.library
@@ -23,6 +22,14 @@
 	.browser
 	
 	.instructions
-		%input.save{:type=>'button'}
+		%p
+			Use your keyboard arrows to navigate through just like in you file browser or windows explorer.
+		%p
+			Press enter to go inside a directory, backspace to go back or up directory.
+		%p
+			Press Control key and hold it and press enter to add it to sources (left upper box).
+		%p
+			Once you are done press continue button below.
+		%input.save{:type=>'button',:value=>'Continue'}
 			
 %script{:type => "text/javascript", :charset => "utf-8", :src => "/javascript/setup.js"}

@@ -1,5 +1,5 @@
 require 'rubygems' if RUBY_VERSION.to_f < 1.9
-require 'sinatra/base'
+	require 'sinatra/base'
 require 'haml'
 
 require 'json'
@@ -44,7 +44,7 @@ module MusicTab
 		get '/setup/files' do
 			Files.destroy
 			Sources.each{|s|
-				MusicTab::FOps.gen_list('/fun/Music') do |arr_f|
+				MusicTab::FOps.gen_list(s.path) do |arr_f|
 					@files=Files.create(
 						:file_path => arr_f[0],
 						:title => arr_f[1],
@@ -52,6 +52,7 @@ module MusicTab
 						:artist => arr_f[3] 
 					)
 					p @files.errors if @files.errors.length > 0 
+					puts arr_f[0]
 				end
 			}
 			"200"
