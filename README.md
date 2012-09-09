@@ -17,7 +17,7 @@ Click next button to continue
 
 Once setup is done you can see file list in home screen click on a song to play
 
-Then run localhost:4567 in your browser
+Then Enter localhost:4567 in your browser's address bar
 
 ###TODO:###
 -----
