@@ -4,11 +4,10 @@ module MusicTab
 		
 		def self.ls(dir)
 			arr=Dir[dir+'/*']
-			#filters mp3 files
 			filtered_arr=[]
 			arr.each{ |a|
 				if !File.directory?(a) then
-					filtered_arr<< File.basename(a) if IO.read(a,8) == "ID3\x03\x00\x00\x00\x00"				
+					filtered_arr<< File.basename(a) if a.end_with?('.mp3')				
 				else
 					filtered_arr<< File.basename(a)
 				end				
@@ -22,7 +21,7 @@ module MusicTab
 			filtered_arr=[]
 			arr.each{ |a|
 				if !File.directory?(a) then
-					yield File.basename(a) if IO.read(a,8) == "ID3\x03\x00\x00\x00\x00"				
+					yield File.basename(a) if a.end_with?('.mp3')				
 				else
 					yield File.basename(a)
 				end				
@@ -37,20 +36,19 @@ module MusicTab
 			end
 			counter = 0
 			Dir[Dir.pwd+'/*'].each{|x|
-				puts Dir.pwd
+				#puts Dir.pwd
 				if File.directory?(x) then
 					self.gen_list(x) do |y|
 						yield y
 					end
 				else if File.basename(x).match('.mp3') then
-						if IO.read(x,8) == "ID3\x03\x00\x00\x00\x00" then
 						begin
 							Mp3Info.open(x) do |y|
 								yield [x,y.tag.title,y.tag.album,y.tag.artist]
 							end
 						rescue Mp3InfoError
 						end
-					end end 
+					end  
 				end
 			}
 			Dir.chdir(prev_pwd)

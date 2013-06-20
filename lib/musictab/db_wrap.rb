@@ -22,7 +22,7 @@ class Files
 	property :title		, String, :length => 100
 	property :album		, String, :length => 100
 	property :artist	, String, :length => 100
-	property :include  	, Boolean, :default  => 1
+	property :include  	, Boolean, :default  => true
 end
 	
 DataMapper.finalize

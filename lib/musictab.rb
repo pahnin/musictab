@@ -43,7 +43,7 @@ module MusicTab
 		
 		get '/setup/files' do
 			Files.destroy
-			Sources.each{|s|
+			Sources.each do |s|
 				MusicTab::FOps.gen_list(s.path) do |arr_f|
 					@files=Files.create(
 						:file_path => arr_f[0],
@@ -51,10 +51,11 @@ module MusicTab
 						:album => arr_f[2],
 						:artist => arr_f[3] 
 					)
-					p @files.errors if @files.errors.length > 0 
-					puts arr_f[0]
+					#p @files.errors if @files.errors.length > 0 
+					#puts arr_f[0]
 				end
-			}
+			end
+			puts "setup complete"
 			"200"
 		end
 		
@@ -72,7 +73,7 @@ module MusicTab
 			else
 				Dir.chdir(params[:captures].join)
 			end
-			puts Dir.pwd
+			#puts Dir.pwd
 			FOps.ls(Dir.pwd).to_json
 		end
 		

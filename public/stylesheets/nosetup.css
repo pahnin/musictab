@@ -86,7 +86,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	width:75px;
 }
 .highlight .icon{
-	box-shadow: 0 -5px 10px -5px #EFEFEF inset;
+	box-shadow: 0 -4px 7px -4px #EFEFEF inset;
 }
 .folder .icon{
 	background: #7abcff; /* Old browsers */
