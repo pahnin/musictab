@@ -41,13 +41,12 @@ module MusicTab
 					self.gen_list(x) do |y|
 						yield y
 					end
-				else if File.basename(x).match('.mp3') then
-						begin
-							Mp3Info.open(x) do |y|
-								yield [x,y.tag.title,y.tag.album,y.tag.artist]
-							end
-						rescue Mp3InfoError
+				elsif File.basename(x).end_with?('.mp3') then
+					begin
+						Mp3Info.open(x,:parse_mp3=>false) do |y|
+							yield [x,y.tag.title,y.tag.album,y.tag.artist]
 						end
+					rescue Mp3InfoError
 					end  
 				end
 			}
